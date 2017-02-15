@@ -13,17 +13,17 @@ namespace TodoApi.Controllers
     public class TodoController : Controller
     {
         /// <summary>
-        /// The costructor for the TodoController.
+        /// The todo items.
+        /// </summary>
+        private readonly ITodoRepository _todoItems;
+
+        /// <summary>
+        /// The constructor for the TodoController.
         /// </summary>
         public TodoController(ITodoRepository todoItems)
         {
-            TodoItems = todoItems;
+            _todoItems = todoItems;
         }
-
-        /// <summary>
-        /// Get and set the todo items.
-        /// </summary>
-        public ITodoRepository TodoItems { get; set; }
 
         /// <summary>
         /// Creates a TodoItem.
@@ -52,7 +52,7 @@ namespace TodoApi.Controllers
             {
                 return BadRequest();
             }
-            TodoItems.Add(item);
+            _todoItems.Add(item);
             return CreatedAtRoute("GetTodo", new { id = item.Key }, item);
         }
 
@@ -64,13 +64,13 @@ namespace TodoApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var todo = TodoItems.Find(id);
+            var todo = _todoItems.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            TodoItems.Remove(id);
+            _todoItems.Remove(id);
             return new NoContentResult();
         }
 
@@ -81,13 +81,13 @@ namespace TodoApi.Controllers
         [HttpGet]
         public IEnumerable<TodoItem> GetAll()
         {
-            return TodoItems.GetAll();
+            return _todoItems.GetAll();
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
         public IActionResult GetById(string id)
         {
-            var item = TodoItems.Find(id);
+            var item = _todoItems.Find(id);
             if (item == null)
             {
                 return NotFound();
@@ -106,7 +106,7 @@ namespace TodoApi.Controllers
                 throw new System.ArgumentException("The exception message that we have written ourselves.");
             }
 
-            var item = TodoItems.Find(id);
+            var item = _todoItems.Find(id);
             if (item == null)
             {
                 return new BadRequestResult();
@@ -123,13 +123,13 @@ namespace TodoApi.Controllers
                 return BadRequest();
             }
 
-            var todo = TodoItems.Find(id);
+            var todo = _todoItems.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            TodoItems.Update(item);
+            _todoItems.Update(item);
             return new NoContentResult();
         }
     }
