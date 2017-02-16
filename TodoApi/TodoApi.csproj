@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.0</TargetFramework>
-    <ApplicationInsightsResourceId>/subscriptions/da36ca27-ddd5-492a-b888-6529bbffab15/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/TodoApi</ApplicationInsightsResourceId>
-    <ApplicationInsightsAnnotationResourceId>/subscriptions/da36ca27-ddd5-492a-b888-6529bbffab15/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/TodoApi</ApplicationInsightsAnnotationResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/0ed0af3c-7f14-4e7c-8e97-0eafc2709fd1/resourcegroups/Test-group/providers/microsoft.insights/components/TodoApi</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/0ed0af3c-7f14-4e7c-8e97-0eafc2709fd1/resourceGroups/Test-group/providers/microsoft.insights/components/TodoApi</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
